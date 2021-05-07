@@ -1,5 +1,7 @@
+const goal = 30;
 let entries = [];
 const entriesWrapper = document.querySelector('#entries');
+document.querySelector('#target').innerText = goal;
 
 function addNewEntry(newEntry) {
     entriesWrapper.removeChild(entriesWrapper.firstElementChild);
@@ -26,6 +28,11 @@ function calcAverage() {
     document.getElementById('average').innerText = average;
 }
 
+function weeklyHigh() {
+    const high = Math.max(...entries); // ... is js spread operator
+    document.getElementById('high').innerText = high;
+}
+
 function handleSubmit(event) {
     event.preventDefault(); // To stop reloading the browser
     const entry = Number(document.querySelector('#entry').value);
@@ -35,6 +42,7 @@ function handleSubmit(event) {
     addNewEntry(entry);
     calcTotal();
     calcAverage();
+    weeklyHigh();
 }
 
 const form = document.querySelector('form').addEventListener('submit', handleSubmit);
